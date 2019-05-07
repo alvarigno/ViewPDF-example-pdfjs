@@ -1,11 +1,18 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <style>
 .the-canvas {
   margin:auto;
 }
 .content-pdf {
-    width:700px;
-    height:400px;
+
     overflow: scroll;
     margin:0px auto;
 }
@@ -62,7 +69,36 @@ loadingTask.promise.then(function(pdf) {
 </script>
 
 
+<script>
+  
+  $(window).resize(function() {
+
+    ViewPD();
+
+  });
+  
+  $(window).ready(function() {
+
+    ViewPD();
+
+  });
+
+function ViewPD(){
+
+  var height = $(window).height() - 70;
+
+//    alert('funciona?'+ height);
+    $('.content-pdf').css('height',height);
+
+}
+
+  </script>
+
+</head>
+<body>
 <h1>PDF.js 'Hello, base64!' example</h1>
 <div class="content-pdf">
     <canvas id="canvas-pdf-view" class="the-canvas"></canvas>
 </div>
+</body>
+</html>
