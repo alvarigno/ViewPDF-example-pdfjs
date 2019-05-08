@@ -13,8 +13,15 @@
 }
 .content-pdf {
 
-    overflow: scroll;
+    overflow: hidden;
     margin:0px auto;
+}
+
+.content-view-pdf {
+
+overflow-y: scroll;
+margin:0px auto;
+
 }
 
 </style>
@@ -52,6 +59,9 @@ loadingTask.promise.then(function(pdf) {
     canvas.height = viewport.height;
     canvas.width = viewport.width;
 
+    $('.content-pdf').css('height',canvas.height);
+    $('.content-pdf').css('width',canvas.width);
+
     // Render PDF page into canvas context
     var renderContext = {
       canvasContext: context,
@@ -88,7 +98,7 @@ function ViewPD(){
   var height = $(window).height() - 70;
 
 //    alert('funciona?'+ height);
-    $('.content-pdf').css('height',height);
+    $('.content-view-pdf').css('height',height);
 
 }
 
@@ -97,8 +107,10 @@ function ViewPD(){
 </head>
 <body>
 <h1>PDF.js 'Hello, base64!' example</h1>
-<div class="content-pdf">
+<div class="content-view-pdf">
+  <div class="content-pdf">
     <canvas id="canvas-pdf-view" class="the-canvas"></canvas>
+  </div>
 </div>
 </body>
 </html>
