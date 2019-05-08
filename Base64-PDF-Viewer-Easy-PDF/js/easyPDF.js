@@ -1,7 +1,6 @@
 function easyPDF(_base64, _title) {
 	// HTML definition of dialog elements
-	var dialog = '<div id="pdfDialog" title="'+_title+'">'+
-            			'<label>Page: </label><label id="pageNum"></label><label> of </label><label id="pageLength"></label>'+
+	var dialog = '<div id="pdfDialog" title="...'+_title+'">'+
             			'<canvas id="pdfview"></canvas>'+
             		'</div>';
 	$("div[id=pdfDialog]").remove();
@@ -12,45 +11,26 @@ function easyPDF(_base64, _title) {
   // Init page count
 	var page = 1;
   // Dialog definition
-	$( "#pdfDialog" ).dialog({
+	$("#pdfDialog" ).dialog({
     // Moves controls to top of dialog
 		open: function (event, ui) {
 			$(this).before($(this).parent().find('.ui-dialog-buttonpane'));
 		},
-		width: ($(window).width() / 2),
+		width: ($(window).width()),
 		height: $(window).height(),
     modal: true,
     position: {
   		my: "top",
     	at: "top",
     	of: window,
-    	collision: "none"
+			collision: "none"
     },
     buttons: {
-    	"Back": {
-        click: function () {
-        	RenderPDF(-1)
-        },
-        text: 'Previous',
-      },
-      "Next": {
-        click: function () {
-        	RenderPDF(1)
-        },
-        text: 'Next',
-      },
-      "Confirm": {
-        click: function () {
-          $(this).dialog("close");
-          $("#pdfDialog").remove()
-        },
-        text: 'Close',
-      }
     }
 	});
 
   // Init page number and the document
-	$('#pageNum').text(page);
+	//$('#pageNum').text(page);
   RenderPDF(0);
 
   // PDF.js control
@@ -95,11 +75,6 @@ function easyPDF(_base64, _title) {
   			};
 				page.render(renderContext);
 				
-				var ancho = $('#pdfDialog').width();
-				var alto = $(window).height();
-
-				$('#pdfview').width(ancho);
-				//$('#pdfDialog').css('height',alto);
 
   		});
   	}).catch(e => {});
